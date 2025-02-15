@@ -1,10 +1,49 @@
 Given a time in 12-hour AM/PM format, convert it to military (24-hour) time.
-
 Note: - 12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
 - 12:00:00PM on a 12-hour clock is 12:00:00 on a 24-hour clock.
-
 Function Description
 Complete the  function with the following parameter(s):
 input: a time in 12 hour format
 Returns
 output: the time in  24 hour format
+
+#include <bits/stdc++.h>
+
+using namespace std;
+    string timeConversion(string s) {
+    int hours = stoi(s.substr(0, 2));  
+    string minutes_seconds = s.substr(2, 6); 
+    string period = s.substr(8, 2); 
+
+    if (period == "AM") {
+        if (hours == 12) {
+            return "00" + minutes_seconds;  
+        }
+    } else { 
+        if (hours != 12) {
+            hours += 12;  
+        }
+    }
+
+    return (hours < 10 ? "0" : "") + to_string(hours) + minutes_seconds;
+}
+
+
+
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = timeConversion(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
+
