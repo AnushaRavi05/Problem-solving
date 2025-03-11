@@ -1,0 +1,70 @@
+You have k lists of sorted integers in non-decreasing order. Find the smallest range that includes at least one number from each of the k lists.
+
+We define the range [a, b] is smaller than range [c, d] if b - a < d - c or a < c if b - a == d - c.
+
+ class Info {
+public:
+    int value;
+    int rowIndex;
+    int colIndex;
+
+    Info(int data, int row, int col) {
+        this->value = data;
+        this->rowIndex = row;
+        this->colIndex = col;
+    }
+};
+
+class comparator {
+public:
+    bool operator()(Info* first, Info* second) {
+        return first->value > second->value;
+    }
+};
+
+class Solution {
+public:
+    vector<int> smallestRange(vector<vector<int>>& nums) {
+        int rows = nums.size();
+        int maxi = INT_MIN;
+        int mini = INT_MAX;
+        priority_queue<Info*, vector<Info*>, comparator> pq;
+
+        for (int row = 0; row < rows; row++) {
+            Info* temp = new Info(nums[row][0], row, 0);
+            pq.push(temp);
+            maxi = max(nums[row][0], maxi);
+            mini = min(nums[row][0], mini);
+        }
+        int endIndex = maxi;
+        int startIndex = mini;
+
+        while(!pq.empty()) {
+            Info* temp = pq.top();
+            pq.pop();
+
+            int data = temp->value;
+            int rowIndex = temp->rowIndex;
+            int colIndex = temp->colIndex + 1;
+
+            mini = data;
+
+            if ((maxi - mini) < (endIndex - startIndex)) {
+                startIndex = mini;
+                endIndex = maxi;
+            }
+
+            int currentColSize = nums[rowIndex].size();
+            if (colIndex < currentColSize) {
+                Info* temp = new Info(nums[rowIndex][colIndex], rowIndex, colIndex);
+                pq.push(temp);
+                maxi = max(maxi, nums[rowIndex][colIndex]);
+            }
+            else {
+                break;
+            }
+        }
+
+        return {startIndex, endIndex};
+    }
+};
