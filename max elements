@@ -1,0 +1,18 @@
+class Solution {
+public:
+    long long maxKelements(std::vector<int>& nums, int k) {
+        
+        std::priority_queue<int> maxHeap(nums.begin(), nums.end());
+        long long score = 0;
+        
+       
+        while (k-- > 0) {
+            int n = maxHeap.top(); 
+            maxHeap.pop();
+            score += n; 
+            maxHeap.push((n + 2) / 3);
+        }
+        
+        return score;
+    }
+};
