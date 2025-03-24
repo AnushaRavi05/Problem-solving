@@ -1,0 +1,45 @@
+You are given a positive integer days representing the total number of days an employee is available for work (starting from day 1). You are also given a 2D array meetings of size n where, meetings[i] = [start_i, end_i] represents the starting and ending days of meeting i (inclusive).
+
+Return the count of days when the employee is available for work but no meetings are scheduled.
+
+Note: The meetings may overlap.
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    int countDays(int days, vector<vector<int>>& meetings) {
+        vector<pair<int, int>> events;
+
+        // Convert meetings into start (+1) and end (-1) events
+        for (auto& meeting : meetings) {
+            events.push_back({meeting[0], 1});
+            events.push_back({meeting[1] + 1, -1});
+        }
+
+        // Sort events by day
+        sort(events.begin(), events.end());
+
+        int availableDays = 0, activeMeetings = 0, prevDay = 1;
+
+        for (auto& event : events) {
+            int currDay = event.first, change = event.second;
+
+            if (activeMeetings == 0) {
+                availableDays += (currDay - prevDay);
+            }
+
+            activeMeetings += change;
+            prevDay = currDay;
+        }
+
+        // Count free days after the last meeting
+        if (activeMeetings == 0) {
+            availableDays += (days - prevDay + 1);
+        }
+
+        return availableDays;
+    }
+};
