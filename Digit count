@@ -1,0 +1,16 @@
+public class Main {
+    public static void main(String[] args) {
+        int number = 12345; // Test case 1
+        int count=0;
+int temp=number;
+        while(temp>0)
+        {
+            int digit=number%10;
+            count++;
+            temp=temp/10;
+        }
+        System.out.println("Digit count: "+count);
+        
+
+    }
+}
