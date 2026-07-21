@@ -1,0 +1,19 @@
+public class Main {
+    public static void main(String[] args) {
+        int number = 12321;
+
+        int original = number;
+        int reverse = 0;
+
+        while (number > 0) {
+            reverse = reverse * 10 + (number % 10);
+            number = number / 10;
+        }
+
+        if (original == reverse) {
+            System.out.println("Is palindrome: true");
+        } else {
+            System.out.println("Is palindrome: false");
+        }
+    }
+}
