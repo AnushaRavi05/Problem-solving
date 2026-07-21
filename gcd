@@ -31,3 +31,4 @@ public class Main {
        System.out.println("GCD: "+gcd);
     }
 }
+the time complexity is O(min(a, b)) because the loop runs only up to the smaller of the two numbers.
