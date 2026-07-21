@@ -1,0 +1,52 @@
+Complexity
+brute force approach
+GCD: O(min(a, b))
+LCM calculation: O(1)
+Overall: O(min(a, b))
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        int a = 12;
+        int b = 18; // Test case 1
+        int gcd=1;
+        // Find LCM (hint: LCM = a*b / GCD)
+        // Print: LCM: <result>
+        for(int i=1;i<=a && i<=b;i++)
+        {
+            if(a%i==0 && b%i==0)
+            {
+                gcd=i;
+            }
+        }
+        int lcm=a*b/gcd;
+        System.out.println("LCM:"+lcm);
+    }
+}
+
+Optimal approach (Euclidean Algorithm)
+GCD: O(log(min(a, b)))
+LCM calculation: O(1)
+Overall: O(log(min(a, b)))
+
+public class Main {
+    public static void main(String[] args) {
+        int a = 12;
+        int b = 18;
+
+        int x = a;
+        int y = b;
+
+        while (y != 0) {
+            int temp = y;
+            y = x % y;
+            x = temp;
+        }
+
+        int gcd = x;
+        int lcm = (a * b) / gcd;
+
+        System.out.println("LCM: " + lcm);
+    }
+}
