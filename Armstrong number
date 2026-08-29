@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+class Main {
+
+    static boolean checkarm(int sum, int original) {
+        if (sum == original)
+            return true;
+        else
+            return false;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Enter n:");
+        int n = in.nextInt();
+
+        int original = n;
+        int temp = n;
+        int sum = 0;
+        int count = 0;
+
+        // Count number of digits
+        while (temp != 0) {
+            temp = temp / 10;
+            count++;
+        }
+
+        // Calculate Armstrong sum
+        temp = n;
+
+        while (temp != 0) {
+            int digit = temp % 10;
+
+            sum += (int)Math.pow(digit, count);
+
+            temp = temp / 10;
+        }
+
+        System.out.println(checkarm(sum, original));
+    }
+}
