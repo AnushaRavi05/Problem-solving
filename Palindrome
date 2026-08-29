@@ -17,3 +17,33 @@ public class Main {
         }
     }
 }
+
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.Scanner;
+
+class Main {
+
+    static boolean checkrev(int rev,int n)
+    {
+    if(rev==n)
+    return true;
+    else
+    return false;
+    }
+    public static void main(String[] args) {
+       Scanner in=new Scanner(System.in);
+       System.out.println("enter n");
+       int n=in.nextInt();
+       int rev=0;
+       int original=n;
+       while(n!=0)
+       {
+        int digits=n%10;
+        rev=rev*10+digits;
+        n=n/10;
+
+       }
+       System.out.println( checkrev(rev,original));
+       }}
