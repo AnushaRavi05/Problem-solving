@@ -1,0 +1,33 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner in=new Scanner(System.in);
+        System.out.println("enter a");
+        int a=in.nextInt();
+        System.out.println("enter b");
+        int b=in.nextInt();
+        int lcm=0;
+
+        if(a>lcm)
+        {
+            lcm=a;
+                    }
+                    else
+                    {
+                        lcm=b;
+                    }
+
+                    while(true)
+                    {
+                        if(lcm%a==0 && lcm%b==0)
+                        {
+                            break;
+                        }
+                        lcm++;
+                    }
+                    System.out.println("lcm is"+lcm);
+        
+      
+    }}
