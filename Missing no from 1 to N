@@ -1,0 +1,38 @@
+Approach: Sum Formula
+
+Find the expected sum of numbers from 1 to N:
+
+Find the actual sum of all elements in the given array.
+
+Example:
+Array = [1, 2, 3, 5], N = 5
+
+Expected sum = 1 + 2 + 3 + 4 + 5 = 15
+Actual sum = 1 + 2 + 3 + 5 = 11
+
+Missing number = 15 - 11 = 4
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner in=new Scanner(System.in);
+      System.out.println("enter the no of elements");
+      int n=in.nextInt();
+      int expect=(n*(n+1))/2;
+      int[] arr=new int[n];
+      int sum=0;
+      System.out.println("enter elements");
+      for(int i=0;i<n-1;i++)
+      {
+        arr[i]=in.nextInt();
+
+      }
+      for(int x:arr)
+      {
+          sum=sum+x;
+      }
+      int missno=expect-sum;
+      System.out.println("the missing no is"+missno);
+    }
+}
