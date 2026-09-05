@@ -1,7 +1,12 @@
-select x,y,z
-CASE 
-  when x+y+z=45 then 'yes
-else
-'no'
-end as triangle
-from triangle;
+SELECT 
+    x,
+    y,
+    z,
+    CASE
+        WHEN x + y > z 
+         AND x + z > y 
+         AND y + z > x 
+        THEN 'Yes'
+        ELSE 'No'
+    END AS triangle
+FROM Triangle;
